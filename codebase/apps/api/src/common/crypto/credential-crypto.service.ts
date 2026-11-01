@@ -104,4 +104,8 @@ export class CredentialCryptoService {
     const suffix = apiKey.slice(-4);
     return `${prefix}-****${suffix}`;
   }
+
+  maskKey(apiKey: string): string {
+    return this.maskApiKey(apiKey);
+  }
 }
