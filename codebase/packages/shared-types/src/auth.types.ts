@@ -9,6 +9,7 @@ export interface JwtPayload {
   sub: string;       // userId
   email: string;
   role: UserRole;
+  tokenId?: string;  // present on refresh tokens
   iat?: number;
   exp?: number;
 }

@@ -14,6 +14,7 @@ import { UpdateProjectDto } from './dto/update-project.dto';
 import {
   AspectRatio,
   AuditAction,
+  ConnectionStatus,
   GenerationMode,
   JobType,
   ProjectStatus,

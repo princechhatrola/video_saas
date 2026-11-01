@@ -31,14 +31,21 @@ export enum ProviderCapability {
   IMAGE_TO_VIDEO = 'image_to_video',
   REFERENCE_TO_VIDEO = 'reference_to_video',
   VIDEO_EXTENSION = 'video_extension',
+  EXTEND_VIDEO = 'video_extension',
   AUDIO_GENERATION = 'audio_generation',
   SCRIPT_GENERATION = 'script_generation',
+  HD_EXPORT = 'hd_export',
+  ASPECT_RATIO_SELECTION = 'aspect_ratio_selection',
+  CAMERA_CONTROL = 'camera_control',
 }
 
 export enum BillingClassification {
   FREE_VERIFIED = 'free_verified',
+  FREE_TIER_AVAILABLE = 'free_verified',
   TRIAL = 'trial',
+  TRIAL_CREDITS = 'trial',
   PAID = 'paid',
+  PAID_ONLY = 'paid',
   UNKNOWN = 'unknown',
   USER_MANAGED = 'user_managed',
 }
@@ -47,6 +54,7 @@ export enum ProviderStatus {
   ACTIVE = 'active',
   MAINTENANCE = 'maintenance',
   DISABLED = 'disabled',
+  EXPERIMENTAL = 'experimental',
   NOT_IMPLEMENTED = 'not_implemented',
 }
 
@@ -60,14 +68,18 @@ export enum ModelAvailability {
 export enum ConnectionStatus {
   UNTESTED = 'untested',
   VALID = 'valid',
+  CONNECTED = 'valid',
   INVALID = 'invalid',
+  INVALID_KEY = 'invalid',
   QUOTA_EXHAUSTED = 'quota_exhausted',
+  RATE_LIMITED = 'quota_exhausted',
   DISABLED = 'disabled',
   ERROR = 'error',
 }
 
 export enum ProjectStatus {
   DRAFT = 'draft',
+  SCRIPT_READY = 'awaiting_approval',
   SCRIPT_GENERATING = 'script_generating',
   AWAITING_APPROVAL = 'awaiting_approval',
   QUEUED = 'queued',
@@ -81,8 +93,11 @@ export enum ProjectStatus {
 
 export enum AspectRatio {
   PORTRAIT = '9:16',
+  PORTRAIT_9_16 = '9:16',
   LANDSCAPE = '16:9',
+  LANDSCAPE_16_9 = '16:9',
   SQUARE = '1:1',
+  SQUARE_1_1 = '1:1',
 }
 
 export enum GenerationMode {
@@ -102,8 +117,23 @@ export enum SceneStatus {
   PROCESSING = 'processing',
   DOWNLOADING = 'downloading',
   STORED = 'stored',
+  COMPLETED = 'stored',
   FAILED = 'failed',
   CANCELLED = 'cancelled',
+}
+
+export enum AuditAction {
+  USER_REGISTER = 'user.registered',
+  USER_LOGIN = 'user.logged_in',
+  USER_LOGOUT = 'user.logged_out',
+  CREATE_PROJECT = 'project.created',
+  UPDATE_PROJECT = 'project.updated',
+  DELETE_PROJECT = 'project.deleted',
+  CREATE_PROVIDER_CONNECTION = 'provider_key.added',
+  UPDATE_PROVIDER_CONNECTION = 'provider_key.updated',
+  DELETE_PROVIDER_CONNECTION = 'provider_key.deleted',
+  TEST_PROVIDER_CONNECTION = 'provider_key.tested',
+  ADMIN_ACTION = 'admin.action',
 }
 
 export enum JobType {
@@ -160,6 +190,7 @@ export enum QuotaSource {
   PROVIDER_API = 'provider_api',
   RESPONSE_HEADERS = 'response_headers',
   USER_ENTERED = 'user_entered',
+  MANUAL = 'user_entered',
   UNAVAILABLE = 'unavailable',
 }
 

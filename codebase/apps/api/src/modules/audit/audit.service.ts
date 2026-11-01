@@ -4,10 +4,16 @@ import { Model } from 'mongoose';
 import { AuditLog, AuditLogDocument } from './entities/audit-log.entity';
 import type { AuditEventType } from '@videoforge/shared-types';
 
-interface LogInput {
-  eventType: AuditEventType;
+export interface LogInput {
+  eventType?: AuditEventType | string;
+  action?: AuditEventType | string;
   userId?: string;
   ip?: string;
+  ipAddress?: string;
+  userAgent?: string;
+  resourceType?: string;
+  resourceId?: string;
+  details?: Record<string, unknown>;
   metadata?: Record<string, unknown>;
 }
 
@@ -19,13 +25,23 @@ export class AuditService {
   ) {}
 
   async log(input: LogInput): Promise<void> {
+    const eventType = (input.eventType || input.action || 'system.event') as any;
+    const ip = input.ip || input.ipAddress;
+    const meta = {
+      ...(input.metadata || {}),
+      ...(input.details || {}),
+      ...(input.resourceType ? { resourceType: input.resourceType } : {}),
+      ...(input.resourceId ? { resourceId: input.resourceId } : {}),
+      ...(input.userAgent ? { userAgent: input.userAgent } : {}),
+    };
+
     // Fire and forget — audit logging must never block the main request
     this.auditModel
       .create({
-        eventType: input.eventType,
+        eventType,
         userId: input.userId,
-        ip: input.ip,
-        metadata: this.sanitize(input.metadata),
+        ip,
+        metadata: this.sanitize(meta),
         occurredAt: new Date(),
       })
       .catch(() => {

@@ -36,6 +36,8 @@ export interface S3StorageRef {
   bucket: string;
   key: string;
   region: string;
+  publicUrl?: string;
+  cdnUrl?: string;
 }
 
 /** Encrypted credential envelope stored in MongoDB */

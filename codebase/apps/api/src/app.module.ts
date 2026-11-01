@@ -40,7 +40,7 @@ import { ThrottlerBehindProxyGuard } from './common/guards/throttler-proxy.guard
         CREDENTIAL_ENCRYPTION_KEY: Joi.string().min(32).required(),
         AWS_REGION: Joi.string().required(),
         AWS_S3_BUCKET: Joi.string().required(),
-      }),
+      }) as any,
     }),
 
     // ── Database ───────────────────────────────────────────────

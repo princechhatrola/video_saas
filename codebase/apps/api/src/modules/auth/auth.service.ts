@@ -264,7 +264,7 @@ export class AuthService {
       { sub: userId, tokenId },
       {
         secret: this.config.get<string>('JWT_REFRESH_SECRET'),
-        expiresIn: this.config.get<string>('JWT_REFRESH_EXPIRY', '7d'),
+        expiresIn: (this.config.get<string>('JWT_REFRESH_EXPIRY', '7d') || '7d') as any,
       },
     );
   }
